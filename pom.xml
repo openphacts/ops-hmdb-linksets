@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.openphacts.data</groupId>
+  <artifactId>ops-hmdb-linksets</artifactId>
+  <version>3.6.0-SNAPSHOT</version>
+  <name>Open PHACTS HMDB linksets</name>
+  <url>https://github.com/egonw/create-bridgedb-hmdb/tree/gh-pages/hmdb/3.6.0</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>
+      <url>http://www.hmdb.ca/citing</url>
+      <comments>
+HMDB is offered to the public as a freely available resource. Use and re-distribution of the data, in whole or in part, for commercial purposes requires explicit permission of the authors and explicit acknowledgment of the source material (HMDB) and the original publication (see below). We ask that users who download significant portions of the database cite the HMDB paper in any resulting publications.
+
+Please cite:
+
+    Wishart DS, Tzur D, Knox C, et al., HMDB: the Human Metabolome Database. Nucleic Acids Res. 2007 Jan;35(Database issue):D521-6. 17202168
+    Wishart DS, Knox C, Guo AC, et al., HMDB: a knowledgebase for the human metabolome. Nucleic Acids Res. 2009 37(Database issue):D603-610. 18953024
+    Wishart DS, Jewison T, Guo AC, Wilson M, Knox C, et al., HMDB 3.0 — The Human Metabolome Database in 2013. Nucleic Acids Res. 2013. Jan 1;41(D1):D801-7. 23161693 
+      </comments>
+    </license>
+  </licenses>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>wagon-maven-plugin</artifactId>
+        <version>1.0</version>
+        <configuration>
+          <url>http://egonw.github.io/create-bridgedb-hmdb/hmdb/3.6.0/hmdb_ls.void.ttl</url>
+	  <url>http://egonw.github.io/create-bridgedb-hmdb/hmdb/3.6.0/hmdb_ls_chemspider.void.ttl</url>
+          <includes>*.ttl</includes>
+          <toDir>${project.build.outputDirectory}/data/${project.artifactId}</toDir>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>ops</id>
+      <name>Open PHACTS repository</name>
+      <url>http://repository.mygrid.org.uk/artifactory/ops/</url>
+      <releases />
+      <snapshots />
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>ops</id>
+      <name>Open PHACTS repository</name>
+      <url>http://repository.mygrid.org.uk/artifactory/ops/</url>
+    </repository>
+    <snapshotRepository>
+      <id>ops</id>
+      <name>Open PHACTS repository</name>
+      <url>http://repository.mygrid.org.uk/artifactory/ops/</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>
