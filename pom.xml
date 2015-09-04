@@ -13,7 +13,7 @@
 
   <licenses>
     <license>
-      <name>
+      <name>HMDB</name>
       <url>http://www.hmdb.ca/citing</url>
       <comments>
 HMDB is offered to the public as a freely available resource. Use and re-distribution of the data, in whole or in part, for commercial purposes requires explicit permission of the authors and explicit acknowledgment of the source material (HMDB) and the original publication (see below). We ask that users who download significant portions of the database cite the HMDB paper in any resulting publications.
@@ -22,7 +22,7 @@ Please cite:
 
     Wishart DS, Tzur D, Knox C, et al., HMDB: the Human Metabolome Database. Nucleic Acids Res. 2007 Jan;35(Database issue):D521-6. 17202168
     Wishart DS, Knox C, Guo AC, et al., HMDB: a knowledgebase for the human metabolome. Nucleic Acids Res. 2009 37(Database issue):D603-610. 18953024
-    Wishart DS, Jewison T, Guo AC, Wilson M, Knox C, et al., HMDB 3.0 — The Human Metabolome Database in 2013. Nucleic Acids Res. 2013. Jan 1;41(D1):D801-7. 23161693 
+    Wishart DS, Jewison T, Guo AC, Wilson M, Knox C, et al., HMDB 3.0 — The Human Metabolome Database in 2013. Nucleic Acids Res. 2013. Jan 1;41(D1):D801-7. 23161693
       </comments>
     </license>
   </licenses>
@@ -35,11 +35,20 @@ Please cite:
         <artifactId>wagon-maven-plugin</artifactId>
         <version>1.0</version>
         <configuration>
-          <url>http://egonw.github.io/create-bridgedb-hmdb/hmdb/3.6.0/hmdb_ls.void.ttl</url>
-	  <url>http://egonw.github.io/create-bridgedb-hmdb/hmdb/3.6.0/hmdb_ls_chemspider.void.ttl</url>
-          <includes>*.ttl</includes>
+          <url>http://egonw.github.io/create-bridgedb-hmdb/hmdb/3.6.0/</url>
           <toDir>${project.build.outputDirectory}/data/${project.artifactId}</toDir>
         </configuration>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download-single</goal>
+            </goals>
+            <configuration>
+              <fromFile>hmdb_ls.void.ttl</fromFile>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
