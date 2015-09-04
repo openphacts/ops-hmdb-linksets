@@ -31,21 +31,19 @@ Please cite:
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>wagon-maven-plugin</artifactId>
-        <version>1.0</version>
-        <configuration>
-          <url>http://egonw.github.io/create-bridgedb-hmdb/hmdb/3.6.0/</url>
-          <toDir>${project.build.outputDirectory}/data/${project.artifactId}</toDir>
-        </configuration>
+        <artifactId>maven-scm-plugin</artifactId>
         <executions>
           <execution>
-            <phase>generate-resources</phase>
             <goals>
-              <goal>download-single</goal>
+              <goal>checkout</goal>
             </goals>
+            <phase>generate-resources</phase>
             <configuration>
-              <fromFile>hmdb_ls.void.ttl</fromFile>
+              <checkoutDirectory>${project.build.outputDirectory}/data/</checkoutDirectory>
+              <connectionUrl>scm:git:https://github.com/egonw/create-bridgedb-hmdb.git</connectionUrl>
+              <scmVersionType>branch</scmVersionType>
+              <scmVersion>gh-pages</scmVersion>
+              <includes>hmdb/3.6.0/*</includes>
             </configuration>
           </execution>
         </executions>
