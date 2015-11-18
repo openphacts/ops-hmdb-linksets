@@ -4,6 +4,8 @@
   <groupId>org.openphacts.data</groupId>
   <artifactId>ops-hmdb-linksets</artifactId>
   <version>3.6.0-SNAPSHOT</version>
+  <packaging>data</packaging>
+
   <name>Open PHACTS HMDB linksets</name>
   <url>https://github.com/egonw/create-bridgedb-hmdb/tree/gh-pages/hmdb/3.6.0</url>
   <properties>
@@ -31,7 +33,17 @@ Please cite:
   <build>
     <plugins>
       <plugin>
+        <groupId>no.s11.dataplugin</groupId>
+          <artifactId>data-maven-plugin</artifactId>
+          <version>0.0.6</version>
+          <extensions>true</extensions>
+          <configuration>
+		<dataDirectory>${project.build.directory}/checkout/hmdb/3.6.0/</dataDirectory>
+          </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-scm-plugin</artifactId>
+	<version>1.9.4</version>
         <executions>
           <execution>
             <goals>
@@ -39,7 +51,7 @@ Please cite:
             </goals>
             <phase>generate-resources</phase>
             <configuration>
-              <checkoutDirectory>${project.build.outputDirectory}/data/</checkoutDirectory>
+              <checkoutDirectory>${project.build.directory}/checkout</checkoutDirectory>
               <connectionUrl>scm:git:https://github.com/egonw/create-bridgedb-hmdb.git</connectionUrl>
               <scmVersionType>branch</scmVersionType>
               <scmVersion>gh-pages</scmVersion>
@@ -60,6 +72,16 @@ Please cite:
       <snapshots />
     </repository>
   </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>bintray-stain-maven</id>
+            <name>bintray-plugins</name>
+            <url>http://dl.bintray.com/stain/maven</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
   <distributionManagement>
     <repository>
